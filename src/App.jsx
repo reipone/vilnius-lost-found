@@ -90,17 +90,35 @@ function LocationMarker({ onSave }) {
           <textarea 
             value={description} 
             onChange={(e) => setDescription(e.target.value)} 
-            placeholder="What did you find?"
+            placeholder="Radau!"
             required 
           />
           {/* FIXED: Removed the double slash in accept="image/*" */}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-            required
-          />
-          <button type="submit">Save Pin</button>
+        {/* The Custom File Upload Wrapper */}
+          <div className="file-upload-container">
+            
+            {/* 1. The visible button (which is actually a label) */}
+            <label htmlFor="photo-upload" className="custom-file-label">
+              Pridėti nuotrauką
+            </label>
+            
+            {/* 2. The HIDDEN default browser input */}
+            <input
+              id="photo-upload"
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+              required
+              style={{ display: 'none' }} /* This makes the ugly button vanish! */
+            />
+
+            {/* 3. The custom text to show the file name */}
+            <span className="file-name-display">
+              {image ? image.name : "Nepasirinktas failas"}
+            </span>
+            
+          </div>
+          <button type="submit">Pasidalink</button>
         </form>
       </Popup>
     </Marker>
