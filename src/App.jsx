@@ -125,14 +125,42 @@ function LocationMarker({ onSave }) {
   );
 }
 
+// --- COMPONENT: Flies the map to the user's location ---
+function MapAutoCenter({ position }) {
+  const map = useMap();
+  
+  useEffect(() => {
+    if (position) {
+      // 15 is the zoom level. Higher = closer!
+      map.flyTo(position, 15, { animate: true }); 
+    }
+  }, [position, map]);
+  
+  return null;
+}
 // --- MAIN APP ---
 function App() {
   const [savedItems, setSavedItems] = useState([]);
   const [isUploading, setIsUploading] = useState(false); 
+  const [userLocation, setUserLocation] = useState(null); // NEW: State for user location
   const VILNIUS_CENTER = [54.6872, 25.2797];
 
   useEffect(() => {
     fetchPins();
+
+    // Ask the browser for the user's location
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // If they click "Allow", save their coordinates!
+          setUserLocation([position.coords.latitude, position.coords.longitude]);
+        },
+        (error) => {
+          console.log("User denied location or error:", error);
+          // If they hit "Block", it just stays quietly on the Vilnius center
+        }
+      );
+    }
   }, []);
 
   const fetchPins = async () => {
@@ -203,6 +231,9 @@ function App() {
           url={`https://tile.jawg.io/jawg-streets/{z}/{x}/{y}{r}.png?access-token=KbrM8q1XLTrpk8k9yElEOIpbFu8uj9tDE9NyZYY8eef3Zyzw9erKtPqZBnlBvlnB`}
         />
         
+        /* Tell the map to fly to the user if we find them */
+        <MapAutoCenter position={userLocation} />
+
         <LocationMarker onSave={handleNewItem} />
 
         {savedItems.map((item) => (
