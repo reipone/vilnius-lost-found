@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap, CircleMarker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { formatDistanceToNow } from 'date-fns';
 import { lt } from 'date-fns/locale'; // Lithuanian language support!
@@ -234,7 +234,28 @@ function App() {
         /* Tell the map to fly to the user if we find them */
         <MapAutoCenter position={userLocation} />
 
+/* NEW: The User's "Blue Dot" Location Pin */
+        {userLocation && (
+          <CircleMarker 
+            center={userLocation} 
+            radius={8} /* Size of the dot */
+            pathOptions={{ 
+              color: 'white', /* Adds a nice white border */
+              weight: 2, 
+              fillColor: '#2563EB', /* The classic Google Maps blue */
+              fillOpacity: 1 
+            }}
+          >
+            <Popup autoPan={false}>Jūs esate čia! (You are here!)</Popup>
+          </CircleMarker>
+        )}
+
+
+
+
+
         <LocationMarker onSave={handleNewItem} />
+
 
         {savedItems.map((item) => (
           // Make sure we use a unique key. Supabase provides 'id' automatically.
