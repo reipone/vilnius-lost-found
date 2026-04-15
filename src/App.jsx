@@ -41,7 +41,7 @@ function CenteringMarker({ item }) {
               style={{ width: '100%', borderRadius: '8px', marginBottom: '8px' }} 
             />
           )}
-          <p><strong>Description:</strong> {item.description}</p>
+          <p><strong>Aprašymas:</strong> {item.description}</p>
           <hr />
           <small>
             {/* Note: Supabase uses item.created_at */}
