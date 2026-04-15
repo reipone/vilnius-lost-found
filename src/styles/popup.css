@@ -1,0 +1,152 @@
+/* remove leaflet default */
+.leaflet-popup {
+background: transparent;
+box-shadow: none;
+padding: 0;
+}
+
+.leaflet-popup-tip {
+    display: none;
+}
+
+/* Pin's size
+.leaflet-marker-pane img {
+    width: 30px !important;
+}
+
+/*.leaflet-popup-content {
+margin: 0;
+}
+
+/* popup container */
+.leaflet-popup-content-wrapper {
+position: relative;
+/*width: 260px;*/
+border-radius: 20px;
+overflow: visible;
+
+/* SAME gradient as marker */
+/*background: linear-gradient(
+145deg,
+#7ED957,
+#43A047 60%,
+#2E7D32
+);*/
+
+background: #eff4ec;
+
+box-shadow: 0 12px 30px rgba(0,0,0,0.25),
+inset 0 2px 6px rgba(255,255,255,0.25);
+
+font-family: "Inter", sans-serif;
+}
+
+/* image */
+.leaflet-popup-content img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+
+border-bottom: 1px solid #9BB86A !important;;
+}
+
+
+/* title */
+.leaflet-popup-content {
+font-size: 16px;
+font-weight: 700;
+color: #3F6F3A;
+}
+
+/* description */
+.leaflet-popup-content textarea {   
+    width: 100%;
+    background: #F7F3E9;
+    border: 1px solid #9BB86A !important;
+    color: #3F6F3A;
+    border-radius: 8px;
+    border: none;
+    padding: 8px;
+    font-size: 16px;
+    margin: 6px 0;
+   
+}
+
+.leaflet-popup-content textarea::placeholder {
+  color: #3F6F3A;
+}
+
+/* Target the textarea when it is clicked (focused) */
+.leaflet-popup-content textarea:focus {
+    outline: none; /* This removes the default Windows/Mac blue glow */
+    border: 2px solid #9cb370; /* This matches your sage green button! */
+    
+    /* Optional: Adds a very soft green glow instead of the harsh blue one */
+    box-shadow: 0 0 0 3px rgba(156, 179, 112, 0.2); 
+}
+
+.leaflet-popup-content textarea:focus::placeholder {
+    opacity: 0.3; /* Drops the visibility down to 30% to make it faint */
+}
+
+/* adding image */
+.leaflet-popup-content input[type="file" i] {
+font-size: 12px;
+color: #3F6F3A;
+margin-bottom: 12px;
+/*background: linear-gradient(145deg, #C6FF00, #7ED957);*/
+}
+/* Style the actual button part */
+.leaflet-popup-content input[type="file"]::file-selector-button {
+  background: #F7F3E9;
+  border: 1px solid #9BB86A;
+  border-radius: 8px;
+  padding: 5px 10px;
+  color: #3F6F3A;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 10px;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect for the button */
+.leaflet-popup-content input[type="file"]::file-selector-button:hover {
+  background: #9BB86A;
+  color: white;
+}
+
+/* button (same lime accent) */
+.leaflet-popup-content button {
+width: 100%;
+padding: 10px;
+border: none;
+border-radius: 12px;
+
+background: #9BB86A;
+color: #F7F3E9;
+font-weight: 600;
+
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.leaflet-popup-content button:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+color: #3F6F3A;
+}
+
+/* pointer (matches marker color) */
+.leaflet-popup-content::after {
+content: "";
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%) rotate(45deg);
+
+width: 20px;
+height: 20px;
+
+background: #eff4ec;
+box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
